@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Akshay Kocharekar",
+    "role": "Frontend Developer",
+    "department": "Engineering"
+  },
+  {
+    "id": 2,
+    "name": "Priya Sharma",
+    "role": "UI/UX Designer",
+    "department": "Design"
+  },
+  {
+    "id": 3,
+    "name": "Rahul Verma",
+    "role": "Backend Developer",
+    "department": "Engineering"
+  },
+  {
+    "id": 4,
+    "name": "Sneha Patil",
+    "role": "QA Engineer",
+    "department": "Quality Assurance"
+  },
+  {
+    "id": 5,
+    "name": "Arjun Nair",
+    "role": "Project Manager",
+    "department": "Management"
+  },
+  {
+    "id": 6,
+    "name": "Neha Kulkarni",
+    "role": "HR Executive",
+    "department": "Human Resources"
+  },
+  {
+    "id": 7,
+    "name": "Rohan Desai",
+    "role": "DevOps Engineer",
+    "department": "Engineering"
+  },
+  {
+    "id": 8,
+    "name": "Meera Joshi",
+    "role": "Business Analyst",
+    "department": "Business"
+  },
+  {
+    "id": 9,
+    "name": "Karan Mehta",
+    "role": "Mobile Developer",
+    "department": "Engineering"
+  },
+  {
+    "id": 10,
+    "name": "Aisha Khan",
+    "role": "Product Designer",
+    "department": "Design"
+  }
+]

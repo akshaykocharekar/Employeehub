@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-slate-100 text-slate-800 transition-colors duration-300;
+}
+
+.dark body {
+  @apply bg-slate-900 text-slate-100;
+}
+
+/* Layout */
+.dark .bg-white {
+  @apply bg-slate-800;
+}
+
+.dark .bg-slate-50 {
+  @apply bg-slate-900;
+}
+
+.dark .bg-slate-100 {
+  @apply bg-slate-700;
+}
+
+.dark .border,
+.dark .border-b,
+.dark .border-r,
+.dark .border-t,
+.dark .border-l {
+  @apply border-slate-700;
+}
+
+/* Text */
+.dark .text-slate-900 {
+  @apply text-white;
+}
+
+.dark .text-slate-800 {
+  @apply text-white;
+}
+
+.dark .text-slate-700 {
+  @apply text-slate-200;
+}
+
+.dark .text-slate-600 {
+  @apply text-slate-300;
+}
+
+.dark .text-slate-500 {
+  @apply text-slate-400;
+}
+
+.dark .text-slate-400 {
+  @apply text-slate-500;
+}
+
+/* Inputs */
+.dark input,
+.dark textarea,
+.dark select {
+  @apply bg-slate-800 border-slate-700 text-white;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  @apply text-slate-500;
+}
+
+/* Tables */
+.dark table {
+  @apply text-white;
+}
+
+.dark thead {
+  @apply bg-slate-800;
+}
+
+.dark tbody tr {
+  @apply border-slate-700;
+}
+
+/* Dropdowns */
+.dark option {
+  background: #1e293b;
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64748b;
+  border-radius: 999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}

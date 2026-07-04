@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Independence Day Celebration",
+    "date": "2026-08-15",
+    "body": "Join us for the Independence Day celebration at the office auditorium. There will be cultural performances, games, and refreshments for all employees."
+  },
+  {
+    "id": 2,
+    "title": "Work From Home Policy Update",
+    "date": "2026-07-20",
+    "body": "Employees may work remotely up to two days each week with manager approval. Please update your work schedule in the employee portal."
+  },
+  {
+    "id": 3,
+    "title": "Quarterly Town Hall",
+    "date": "2026-07-28",
+    "body": "The leadership team will present company performance, upcoming projects, and answer employee questions during the quarterly town hall meeting."
+  }
+]

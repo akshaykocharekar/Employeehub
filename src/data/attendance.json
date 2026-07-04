@@ -1,0 +1,94 @@
+[
+    {
+        "date": "2026-07-01",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-02",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-03",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-06",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-07",
+        "status": "Late"
+    },
+    {
+        "date": "2026-07-08",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-09",
+        "status": "Leave"
+    },
+    {
+        "date": "2026-07-10",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-13",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-14",
+        "status": "Absent"
+    },
+    {
+        "date": "2026-07-15",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-16",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-17",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-20",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-21",
+        "status": "Late"
+    },
+    {
+        "date": "2026-07-22",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-23",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-24",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-27",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-28",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-29",
+        "status": "Leave"
+    },
+    {
+        "date": "2026-07-30",
+        "status": "Present"
+    },
+    {
+        "date": "2026-07-31",
+        "status": "Present"
+    }
+]
