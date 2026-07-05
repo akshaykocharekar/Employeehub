@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { CalendarDays, FileText, Send } from "lucide-react";
 import toast from "react-hot-toast";
 
 import Card from "../common/Card";
 import Button from "../common/Button";
-import Input from "../common/Input";
 
 const LeaveForm = ({ setRequests }) => {
   const [form, setForm] = useState({
@@ -13,38 +13,35 @@ const LeaveForm = ({ setRequests }) => {
     reason: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = ({ target }) => {
     setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [target.name]: target.value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!form.startDate || !form.endDate) {
+    if (!form.startDate || !form.endDate)
       return toast.error("Please select both dates.");
-    }
 
-    if (new Date(form.endDate) < new Date(form.startDate)) {
-      return toast.error("End date must be after start date.");
-    }
+    if (new Date(form.endDate) < new Date(form.startDate))
+      return toast.error(
+        "End date must be after start date."
+      );
 
-    if (!form.reason.trim()) {
+    if (!form.reason.trim())
       return toast.error("Reason is required.");
-    }
 
-    const newRequest = {
-      id: Date.now(),
-      startDate: form.startDate,
-      endDate: form.endDate,
-      type: form.type,
-      reason: form.reason,
-      status: "Pending",
-    };
-
-    setRequests((prev) => [newRequest, ...prev]);
+    setRequests((prev) => [
+      {
+        id: Date.now(),
+        ...form,
+        status: "Pending",
+      },
+      ...prev,
+    ]);
 
     toast.success("Leave request submitted!");
 
@@ -57,58 +54,125 @@ const LeaveForm = ({ setRequests }) => {
   };
 
   return (
-    <Card>
-      <h2 className="mb-6 text-xl font-semibold">
-        Request Leave
-      </h2>
+    <Card className="overflow-hidden">
+      {/* Header */}
+      <div className="mb-8 border-b border-slate-200 pb-6">
+        <h2 className="text-2xl font-bold text-slate-900">
+          Request Leave
+        </h2>
+
+        <p className="mt-2 text-sm text-slate-500">
+          Submit your leave request for manager
+          approval.
+        </p>
+      </div>
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-4"
+        className="space-y-6"
       >
-        <Input
-          type="date"
-          name="startDate"
-          value={form.startDate}
-          onChange={handleChange}
-        />
+        {/* Dates */}
+        <div className="grid gap-5 md:grid-cols-2">
+          <div>
+            <label className="mb-2 block text-sm font-medium text-slate-600">
+              Start Date
+            </label>
 
-        <Input
-          type="date"
-          name="endDate"
-          value={form.endDate}
-          onChange={handleChange}
-        />
+            <div className="relative">
+              <CalendarDays
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+              />
 
-        <select
-          name="type"
-          value={form.type}
-          onChange={handleChange}
-          className="w-full rounded-xl border border-slate-300 p-3"
-        >
-          <option>Casual Leave</option>
-          <option>Sick Leave</option>
-          <option>Earned Leave</option>
-        </select>
+              <input
+                type="date"
+                name="startDate"
+                value={form.startDate}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 transition outline-none focus:border-indigo-500 focus:bg-white"
+              />
+            </div>
+          </div>
 
-        <textarea
-          name="reason"
-          rows="4"
-          value={form.reason}
-          onChange={handleChange}
-          placeholder="Reason"
-          className="w-full rounded-xl border border-slate-300 p-3 outline-none focus:border-indigo-500"
-        />
+          <div>
+            <label className="mb-2 block text-sm font-medium text-slate-600">
+              End Date
+            </label>
 
-        <Button
-          type="submit"
-          className="w-full"
-        >
-          Submit Request
-        </Button>
+            <div className="relative">
+              <CalendarDays
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+              />
+
+              <input
+                type="date"
+                name="endDate"
+                value={form.endDate}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 transition outline-none focus:border-indigo-500 focus:bg-white"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Leave Type */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-600">
+            Leave Type
+          </label>
+
+          <select
+            name="type"
+            value={form.type}
+            onChange={handleChange}
+            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-indigo-500 focus:bg-white"
+          >
+            <option>Casual Leave</option>
+            <option>Sick Leave</option>
+            <option>Earned Leave</option>
+          </select>
+        </div>
+
+        {/* Reason */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-600">
+            Reason
+          </label>
+
+          <div className="relative">
+            <FileText
+              size={18}
+              className="absolute left-4 top-4 text-slate-400"
+            />
+
+            <textarea
+              rows={5}
+              name="reason"
+              value={form.reason}
+              onChange={handleChange}
+              maxLength={250}
+              placeholder="Briefly explain your reason..."
+              className="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-11 pr-4 outline-none transition focus:border-indigo-500 focus:bg-white"
+            />
+          </div>
+
+          <div className="mt-2 text-right text-xs text-slate-400">
+            {form.reason.length}/250
+          </div>
+        </div>
+
+        {/* Button */}
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            className="flex items-center gap-2 rounded-xl px-8 py-3"
+          >
+            <Send size={18} />
+            Submit Request
+          </Button>
+        </div>
       </form>
     </Card>
   );
-};
-
-export default LeaveForm;
+}
