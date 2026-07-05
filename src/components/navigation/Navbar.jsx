@@ -124,7 +124,11 @@ const Navbar = ({ setSidebarOpen }) => {
             )}
           </button>
 
-          {showNotifications && <NotificationPanel />}
+          {showNotifications && (
+  <NotificationPanel
+    onClose={() => setShowNotifications(false)}
+  />
+)}
         </div>
 
         {/* Theme Toggle */}

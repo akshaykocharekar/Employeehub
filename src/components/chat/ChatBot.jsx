@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Bot, LoaderCircle, MessageCircle, Sparkles, X } from "lucide-react";
+import {
+  Bot,
+  LoaderCircle,
+  MessageCircle,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
@@ -92,22 +98,48 @@ ${JSON.stringify(announcements)}
 
   return (
     <>
+      {/* Floating Button */}
       <button
         onClick={() => setOpen((prev) => !prev)}
-        className="fixed bottom-6 right-6 z-50 rounded-full bg-indigo-600 p-4 text-white shadow-2xl transition hover:scale-105"
+        className={`
+          fixed bottom-5 right-5 z-50
+          rounded-full bg-indigo-600 p-4
+          text-white shadow-2xl
+          transition duration-300 hover:scale-105
+          ${open ? "hidden sm:flex" : "flex"}
+        `}
       >
-        {open ? <X /> : <MessageCircle />}
+        <MessageCircle size={24} />
       </button>
 
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 flex h-[600px] w-[380px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
+        <div
+          className="
+            fixed z-50 flex flex-col overflow-hidden
+            bg-white shadow-2xl
 
-          <div className="flex items-center justify-between border-b p-4">
+            inset-0
+
+            sm:inset-auto
+            sm:bottom-24
+            sm:right-6
+            sm:h-[600px]
+            sm:w-[380px]
+            sm:rounded-2xl
+          "
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-slate-200 bg-white p-4">
             <div className="flex items-center gap-3">
-              <Bot />
+              <div className="rounded-full bg-indigo-100 p-2">
+                <Bot
+                  size={20}
+                  className="text-indigo-600"
+                />
+              </div>
 
               <div>
-                <h2 className="font-semibold">
+                <h2 className="font-semibold text-slate-900">
                   EmployeeHub AI
                 </h2>
 
@@ -117,13 +149,21 @@ ${JSON.stringify(announcements)}
               </div>
             </div>
 
+            <button
+              onClick={() => setOpen(false)}
+              className="rounded-lg p-2 transition hover:bg-slate-100 sm:hidden"
+            >
+              <X size={22} />
+            </button>
+
             <Sparkles
               size={18}
-              className="text-indigo-600"
+              className="hidden text-indigo-600 sm:block"
             />
           </div>
 
-          <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4">
+          {/* Messages */}
+          <div className="flex flex-1 flex-col gap-3 overflow-y-auto bg-slate-50 p-4">
             {messages.map((message, index) => (
               <ChatMessage
                 key={index}
@@ -133,7 +173,10 @@ ${JSON.stringify(announcements)}
 
             {loading && (
               <div className="flex items-center gap-2 text-sm text-slate-500">
-                <LoaderCircle className="animate-spin" size={18} />
+                <LoaderCircle
+                  size={18}
+                  className="animate-spin"
+                />
                 Thinking...
               </div>
             )}
@@ -141,7 +184,10 @@ ${JSON.stringify(announcements)}
             <div ref={bottomRef} />
           </div>
 
-          <ChatInput onSend={send} />
+          {/* Input */}
+          <div className="bg-white">
+            <ChatInput onSend={send} />
+          </div>
         </div>
       )}
     </>
