@@ -27,9 +27,7 @@ const LeaveForm = ({ setRequests }) => {
       return toast.error("Please select both dates.");
 
     if (new Date(form.endDate) < new Date(form.startDate))
-      return toast.error(
-        "End date must be after start date."
-      );
+      return toast.error("End date must be after start date.");
 
     if (!form.reason.trim())
       return toast.error("Reason is required.");
@@ -62,15 +60,11 @@ const LeaveForm = ({ setRequests }) => {
         </h2>
 
         <p className="mt-2 text-sm text-slate-500">
-          Submit your leave request for manager
-          approval.
+          Submit your leave request for manager approval.
         </p>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-6"
-      >
+      <form onSubmit={handleSubmit} className="space-y-6">
         {/* Dates */}
         <div className="grid gap-5 md:grid-cols-2">
           <div>
@@ -175,4 +169,6 @@ const LeaveForm = ({ setRequests }) => {
       </form>
     </Card>
   );
-}
+};
+
+export default LeaveForm;
