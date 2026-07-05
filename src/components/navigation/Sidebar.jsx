@@ -1,4 +1,4 @@
-
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { navigation } from "../../data/navigation";
 import { Building2, X } from "lucide-react";
@@ -10,15 +10,24 @@ import {
 } from "../../utils/constants";
 
 const Sidebar = ({ open, setOpen }) => {
+  // Close mobile sidebar with Escape, matching Navbar's notification panel behavior
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [setOpen]);
+
   return (
     <>
       {/* Mobile Overlay */}
       <div
         onClick={() => setOpen(false)}
+        aria-hidden="true"
         className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
-          open
-            ? "opacity-100"
-            : "pointer-events-none opacity-0"
+          open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
 
@@ -39,29 +48,28 @@ const Sidebar = ({ open, setOpen }) => {
           shadow-lg
           transition-transform
           duration-300
+          dark:border-slate-800
+          dark:bg-slate-900
+          dark:shadow-black/40
 
-          ${
-            open
-              ? "translate-x-0"
-              : "-translate-x-full"
-          }
+          ${open ? "translate-x-0" : "-translate-x-full"}
 
           lg:translate-x-0
         `}
       >
         {/* Logo */}
-        <div className="flex items-center justify-between border-b border-slate-200 p-6">
+        <div className="flex items-center justify-between border-b border-slate-200 p-6 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="rounded-xl bg-indigo-600 p-2 text-white">
+            <div className="rounded-xl bg-indigo-600 p-2 text-white dark:bg-indigo-500">
               <Building2 size={22} />
             </div>
 
             <div>
-              <h1 className="text-xl font-bold">
+              <h1 className="text-xl font-bold text-slate-900 dark:text-white">
                 {APP_NAME}
               </h1>
 
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-500 dark:text-slate-400">
                 {APP_SUBTITLE}
               </p>
             </div>
@@ -70,7 +78,8 @@ const Sidebar = ({ open, setOpen }) => {
           {/* Mobile Close Button */}
           <button
             onClick={() => setOpen(false)}
-            className="rounded-lg p-2 hover:bg-slate-100 lg:hidden"
+            aria-label="Close menu"
+            className="rounded-lg p-2 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 lg:hidden"
           >
             <X size={20} />
           </button>
@@ -90,13 +99,12 @@ const Sidebar = ({ open, setOpen }) => {
                 className={({ isActive }) =>
                   `mb-2 flex items-center gap-3 rounded-xl px-4 py-3 transition-all ${
                     isActive
-                      ? "bg-indigo-50 text-indigo-600"
-                      : "text-slate-600 hover:bg-slate-100"
+                      ? "bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-400"
+                      : "text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
                   }`
                 }
               >
                 <Icon size={20} />
-
                 <span>{item.title}</span>
               </NavLink>
             );
@@ -107,11 +115,10 @@ const Sidebar = ({ open, setOpen }) => {
       {/* Desktop Spacer */}
       <div
         style={{ width: SIDEBAR_WIDTH }}
-        className="hidden lg:block shrink-0"
+        className="hidden shrink-0 lg:block"
       />
     </>
   );
 };
 
 export default Sidebar;
-

@@ -13,96 +13,171 @@ body {
 }
 
 .dark body {
-  @apply bg-slate-900 text-slate-100;
+  @apply bg-zinc-950 text-zinc-100;
 }
 
-/* Layout */
+/* ---------- Layout surfaces ---------- */
 .dark .bg-white {
-  @apply bg-slate-800;
+  @apply bg-zinc-900;
 }
 
 .dark .bg-slate-50 {
-  @apply bg-slate-900;
+  @apply bg-zinc-950;
 }
 
 .dark .bg-slate-100 {
-  @apply bg-slate-700;
+  @apply bg-zinc-800;
 }
 
+.dark .bg-slate-200 {
+  @apply bg-zinc-700;
+}
+
+/* Card-like surfaces get a subtle lift instead of flat color */
+.dark .rounded-xl.bg-zinc-900,
+.dark .rounded-lg.bg-zinc-900,
+.dark .rounded-2xl.bg-zinc-900 {
+  @apply shadow-lg shadow-black/40 ring-1 ring-white/5;
+}
+
+/* ---------- Borders ---------- */
 .dark .border,
 .dark .border-b,
 .dark .border-r,
 .dark .border-t,
 .dark .border-l {
-  @apply border-slate-700;
+  @apply border-zinc-800;
 }
 
-/* Text */
+.dark .divide-y > * + * {
+  @apply divide-zinc-800;
+}
+
+/* ---------- Text ---------- */
 .dark .text-slate-900 {
   @apply text-white;
 }
 
 .dark .text-slate-800 {
-  @apply text-white;
+  @apply text-zinc-100;
 }
 
 .dark .text-slate-700 {
-  @apply text-slate-200;
+  @apply text-zinc-200;
 }
 
 .dark .text-slate-600 {
-  @apply text-slate-300;
+  @apply text-zinc-300;
 }
 
 .dark .text-slate-500 {
-  @apply text-slate-400;
+  @apply text-zinc-400;
 }
 
 .dark .text-slate-400 {
-  @apply text-slate-500;
+  @apply text-zinc-500;
 }
 
-/* Inputs */
+/* ---------- Accent (used sparingly: active nav, links, focus rings) ---------- */
+.dark .text-indigo-600 {
+  @apply text-indigo-400;
+}
+
+.dark .bg-indigo-600 {
+  @apply bg-indigo-500;
+}
+
+.dark .ring-indigo-500 {
+  @apply ring-indigo-400;
+}
+
+/* ---------- Inputs ---------- */
 .dark input,
 .dark textarea,
 .dark select {
-  @apply bg-slate-800 border-slate-700 text-white;
+  @apply bg-zinc-900 border-zinc-700 text-zinc-100;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  @apply border-indigo-400 ring-1 ring-indigo-400/40 outline-none;
 }
 
 .dark input::placeholder,
 .dark textarea::placeholder {
-  @apply text-slate-500;
+  @apply text-zinc-500;
 }
 
-/* Tables */
+/* ---------- Buttons ---------- */
+.dark button.bg-white {
+  @apply bg-zinc-800 text-zinc-100 hover:bg-zinc-700;
+}
+
+/* ---------- Tables ---------- */
 .dark table {
-  @apply text-white;
+  @apply text-zinc-100;
 }
 
 .dark thead {
-  @apply bg-slate-800;
+  @apply bg-zinc-900 text-zinc-400;
 }
 
 .dark tbody tr {
-  @apply border-slate-700;
+  @apply border-zinc-800;
 }
 
-/* Dropdowns */
+.dark tbody tr:hover {
+  @apply bg-zinc-900/60;
+}
+
+/* ---------- Dropdowns ---------- */
 .dark option {
-  background: #1e293b;
-  color: white;
+  background: #18181b;
+  color: #f4f4f5;
 }
 
-/* Scrollbar */
+/* ---------- Shadows (soften, don't use light-mode shadow colors) ---------- */
+.dark .shadow,
+.dark .shadow-sm,
+.dark .shadow-md,
+.dark .shadow-lg {
+  @apply shadow-black/50;
+}
+
+/* ---------- Toasts / notifications ---------- */
+.dark .bg-white.rounded-lg.shadow-lg {
+  @apply bg-zinc-800 ring-1 ring-white/10;
+}
+
+/* ---------- Smooth theme transition on every element ---------- */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 200ms;
+}
+
+/* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 ::-webkit-scrollbar-thumb {
-  background: #64748b;
+  background: #94a3b8;
   border-radius: 999px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #3f3f46;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
 }
